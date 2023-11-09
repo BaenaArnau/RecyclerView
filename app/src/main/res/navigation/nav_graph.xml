@@ -9,18 +9,29 @@
         android:id="@+id/recyclerElementosFragment"
         android:name="com.example.recyclerview.RecyclerElementosFragment"
         android:label="fragment_recycler_elementos"
-        tools:layout="@layout/fragment_recycler_elementos" >
-        <action
-            android:id="@+id/action_recyclerElementosFragment_to_nuevoElementoFragment"
-            app:destination="@id/nuevoElementoFragment" />
-        <action
-            android:id="@+id/action_recyclerElementosFragment_to_mostrarElementoFragment"
-            app:destination="@id/mostrarElementoFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_recycler_elementos" />
+    <fragment
+        android:id="@+id/recyclerValoracionFragment"
+        android:name="com.example.recyclerview.RecyclerValoracionFragment"
+        android:label="RecyclerValoracionFragment"
+        tools:layout="@layout/fragment_recycler_elementos" />
+    <fragment
+        android:id="@+id/recyclerBuscarFragment"
+        android:name="com.example.recyclerview.RecyclerBusquedaFragment"
+        android:label="RecyclerBuscarFragment"
+        tools:layout="@layout/fragment_recycler_elementos" />
+
+    <action
+        android:id="@+id/action_mostrarElementoFragment"
+        app:destination="@id/mostrarElementoFragment" />
+    <action
+        android:id="@+id/action_nuevoElementoFragment"
+        app:destination="@id/nuevoElementoFragment" />
+
     <fragment
         android:id="@+id/nuevoElementoFragment"
         android:name="com.example.recyclerview.NuevoElementoFragment"
-        android:label="fragment_nuevo_elemento"
+        android:label="fragment_nuevo_elementok"
         tools:layout="@layout/fragment_nuevo_elemento" />
     <fragment
         android:id="@+id/mostrarElementoFragment"

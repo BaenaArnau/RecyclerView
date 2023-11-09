@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -25,7 +26,7 @@ import java.util.List;
 public class RecyclerElementosFragment extends Fragment {
 
     private FragmentRecyclerElementosBinding binding;
-    private ElementosViewModel elementosViewModel;
+    protected ElementosViewModel elementosViewModel;
     private NavController navController;
 
     @Override
@@ -44,7 +45,8 @@ public class RecyclerElementosFragment extends Fragment {
 
         ElementosAdapter elementosAdapter = new ElementosAdapter();
         binding.recyclerView.setAdapter(elementosAdapter);
-        elementosViewModel.obtener().observe(getViewLifecycleOwner(), new Observer<List<Elemento>>() {
+        obtenerElementos().observe(getViewLifecycleOwner(), new Observer<List<Elemento>>() {
+
             @Override
             public void onChanged(List<Elemento> elementos) {
                 elementosAdapter.establecerLista(elementos);
@@ -56,7 +58,7 @@ public class RecyclerElementosFragment extends Fragment {
         binding.irANuevoElemento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.action_recyclerElementosFragment_to_nuevoElementoFragment);
+                navController.navigate(R.id.action_nuevoElementoFragment);
             }
         });
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(
@@ -77,6 +79,11 @@ public class RecyclerElementosFragment extends Fragment {
             }
         }).attachToRecyclerView(binding.recyclerView);
     }
+
+    LiveData<List<Elemento>> obtenerElementos(){
+        return elementosViewModel.obtener();
+    }
+
     class ElementoViewHolder extends RecyclerView.ViewHolder {
         private final ViewholderElementoBinding binding;
 
@@ -114,7 +121,7 @@ public class RecyclerElementosFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     elementosViewModel.seleccionar(elemento);
-                    navController.navigate(R.id.action_recyclerElementosFragment_to_mostrarElementoFragment);
+                    navController.navigate(R.id.action_nuevoElementoFragment);
                 }
             });
 
